@@ -49,8 +49,13 @@ class me_map:
         for edge_in in data["linkDataArray"]:
             self.me_map_graph.add_edge(edge_in["from"], edge_in["to"])
             if edge_in["category"] == 'Contribution':
-                self.edges[(edge_in["from"], edge_in["to"])] = edge(from_node=edge_in["from"], to_node=edge_in["to"],
-                                                                    edge_type=edge_in["text"])
+                if edge_in["text"] == "?":
+                    self.edges[(edge_in["from"], edge_in["to"])] = edge(from_node=edge_in["from"],
+                                                                        to_node=edge_in["to"],
+                                                                        edge_type='Association')
+                else:
+                    self.edges[(edge_in["from"], edge_in["to"])] = edge(from_node=edge_in["from"], to_node=edge_in["to"],
+                                                                        edge_type=edge_in["text"])
             else:
                 self.edges[(edge_in["from"], edge_in["to"])] = edge(from_node=edge_in["from"], to_node=edge_in["to"],
                                                                     edge_type=edge_in["category"])

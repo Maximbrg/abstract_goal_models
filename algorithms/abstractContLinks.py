@@ -43,9 +43,10 @@ def add_task_edges(quality_graph=None, task_graph=None):
             quality_graph.edges[(edge[0], edge[1])] = task_graph.edges[(edge[0], edge[1])]
 
 
-def abstractContLinksAlgorithm(graph=None):
+def abstractContLinksAlgorithm(graph=None, default=True):
     """
 
+    :param default:
     :param graph:
     :return:
     """
@@ -53,14 +54,14 @@ def abstractContLinksAlgorithm(graph=None):
     tasks_nodes = []
     for key in graph.me_map_graph.nodes:
         if graph.nodes[key].node_type == 'Task' and len(graph.me_map_graph.out_edges(key)) > 0:
-            print(graph.me_map_graph.out_edges(key))
+            # print(graph.me_map_graph.out_edges(key))
             tasks_nodes.append(key)
     # tasks_nodes = [-8]
     while len(tasks_nodes) > 0:
-        print('======================')
-        print("task nodes" + str(tasks_nodes))
+        # print('======================')
+        # print("task nodes" + str(tasks_nodes))
         t_i = tasks_nodes.pop()
-        print("t_i" + str(t_i))
+        # print("t_i" + str(t_i))
         outgoing_edges_main = graph.me_map_graph.out_edges(t_i)
 
         for outgoing_edge_main in outgoing_edges_main:
@@ -77,8 +78,8 @@ def abstractContLinksAlgorithm(graph=None):
             visited_incoming_edges = True
             incoming_edges = graph.me_map_graph.in_edges(t_j)
 
-            print(f't_j {t_j}')
-            print(f'incoming_edges of t_j {incoming_edges}')
+            # print(f't_j {t_j}')
+            # print(f'incoming_edges of t_j {incoming_edges}')
 
             for incoming_edge_1 in list(incoming_edges):
                 if not graph.edges[(incoming_edge_1[0], incoming_edge_1[1])]:
@@ -96,15 +97,33 @@ def abstractContLinksAlgorithm(graph=None):
                     graph.me_map_graph.add_edge(t_h, t_j)
                     graph.edges[t_h, t_j] = ed(from_node=t_h, to_node=t_j, edge_type=l)
                     graph.edges[t_h, t_j].all_types.append(label)
-                    print('edge', str((t_h, t_j)), 'added')
+                    # print('edge', str((t_h, t_j)), 'added')
                 else:
                     graph.edges[t_h, t_j].all_types.append(l)
 
                 graph.edges[t_h, t_j].updateLabel()
 
     for node in list(graph.me_map_graph.nodes):
-        if graph.nodes[node].node_label_type == 'R':
-            graph.me_map_graph.remove_node(node)
+        if default:
+            has_association = False
+
+            if graph.nodes[node].node_label_type == 'M':
+                continue
+
+            for edge in graph.me_map_graph.in_edges(node):
+                if graph.edges[(edge[0], edge[1])].edge_type == 'Association':
+                    has_association = True
+                    break
+            for edge in graph.me_map_graph.out_edges(node):
+                if graph.edges[(edge[0], edge[1])].edge_type == 'Association':
+                    has_association = True
+                    break
+            if not has_association:
+                if graph.nodes[node].node_label_type == 'R':
+                    graph.me_map_graph.remove_node(node)
+        else:
+            if graph.nodes[node].node_label_type == 'R':
+                graph.me_map_graph.remove_node(node)
 
 
 def run():

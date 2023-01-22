@@ -25,7 +25,7 @@
  {"category": "AchievedBy", "text": "AchievedBy", "routing": {"yb": "Normal", "oE": 1}, "from": -2, "to": -5, "refs": [], "ctsx": [], "comment": "null"},
  {"category": "Association", "text": "Association", "routing": {"yb": "Normal", "oE": 1}, "from": -21, "to": -1, "refs": [], "ctsx": [], "comment": "null"},
  {"category": "Contribution", "text": "++", "routing": {"yb": "Normal", "oE": 1}, "from": -12, "to": -21, "refs": [], "ctsx": [], "comment": "null"},
- {"category": "AchievedBy", "text": "++", "routing": {"yb": "Normal", "oE": 1}, "from": -10, "to": -12, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "ConsistsOf", "text": "++", "routing": {"yb": "Normal", "oE": 1}, "from": -10, "to": -12, "refs": [], "ctsx": [], "comment": "null"},
  {"category": "Contribution", "text": "-", "routing": {"yb": "Normal", "oE": 1}, "from": -2, "to": -14, "refs": [], "ctsx": [], "comment": "null"},
   {"category": "AchievedBy", "text": "AchievedBy", "routing": {"yb": "Normal", "oE": 1}, "from": -2, "to": -7, "refs": [], "ctsx": [], "comment": "null"}
 ]}
