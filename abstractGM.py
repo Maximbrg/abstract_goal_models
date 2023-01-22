@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append('../')
+sys.path.append('/')
 import networkx as nx
 import matplotlib.pyplot as plt
 from algorithms.abstractContLinks import abstractContLinksAlgorithm
