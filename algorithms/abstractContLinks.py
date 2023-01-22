@@ -55,42 +55,53 @@ def abstractContLinksAlgorithm(graph=None):
         if graph.nodes[key].node_type == 'Task' and len(graph.me_map_graph.out_edges(key)) > 0:
             print(graph.me_map_graph.out_edges(key))
             tasks_nodes.append(key)
-    tasks_nodes = [-12, -2, -8]
+    # tasks_nodes = [-8]
     while len(tasks_nodes) > 0:
-        start_node = tasks_nodes.pop()
-        successors = graph.me_map_graph.successors(start_node)
-        for successor in successors:
-            incoming_edges_main = graph.me_map_graph.in_edges(successor)
-            for incoming_edge in list(incoming_edges_main):
-                if incoming_edge[0] == start_node and not graph.edges[(incoming_edge[0], incoming_edge[1])].is_visited:
-                    label = graph.edges[(incoming_edge[0], incoming_edge[1])].edge_type
-                    graph.edges[(incoming_edge[0], incoming_edge[1])].is_visited = True
+        print('======================')
+        print("task nodes" + str(tasks_nodes))
+        t_i = tasks_nodes.pop()
+        print("t_i" + str(t_i))
+        outgoing_edges_main = graph.me_map_graph.out_edges(t_i)
 
-                    visited_incoming_edges = True
-                    incoming_edges = graph.me_map_graph.in_edges(successor)
+        for outgoing_edge_main in outgoing_edges_main:
 
-                    for incoming_edge_1 in list(incoming_edges):
-                        if not graph.edges[(incoming_edge_1[0], incoming_edge_1[1])]:
-                            visited_incoming_edges = False
-                    if visited_incoming_edges:
-                        tasks_nodes.append(successor)
+            if graph.edges[(outgoing_edge_main[0], outgoing_edge_main[1])].is_visited:
+                continue
+            if graph.edges[(outgoing_edge_main[0], outgoing_edge_main[1])].edge_type == 'Association':
+                continue
 
-                    incoming_edges_start_node = list(graph.me_map_graph.in_edges(start_node))
+            t_j = outgoing_edge_main[1]
+            label = graph.edges[(t_i, t_j)].edge_type
+            graph.edges[(t_i, t_j)].is_visited = True
 
-                    while len(list(incoming_edges_start_node)) > 0:
-                        incoming_edge_new = incoming_edges_start_node.pop()
-                        label = min_edge(label, graph.edges[(incoming_edge_new[0], incoming_edge_new[1])].edge_type)
-                        edge_h = (incoming_edge_new[0], incoming_edge[1])
-                        if edge_h not in graph.me_map_graph.edges:
-                            graph.me_map_graph.add_edge(edge_h[0], edge_h[1])
-                            graph.edges[edge_h[0], edge_h[1]] = ed(from_node=edge_h[0], to_node=edge_h[1],
-                                                                                edge_type=None)
-                            graph.edges[edge_h[0], edge_h[1]].all_types.append(label)
-                        else:
-                            graph.edges[edge_h[0], edge_h[1]].all_types.append(label)
+            visited_incoming_edges = True
+            incoming_edges = graph.me_map_graph.in_edges(t_j)
 
-                        graph.edges[edge_h[0], edge_h[1]].updateLabel()
-                        graph.me_map_graph.remove_edge(edge_h[0], edge_h[1])
+            print(f't_j {t_j}')
+            print(f'incoming_edges of t_j {incoming_edges}')
+
+            for incoming_edge_1 in list(incoming_edges):
+                if not graph.edges[(incoming_edge_1[0], incoming_edge_1[1])]:
+                    visited_incoming_edges = False
+            if visited_incoming_edges:
+                tasks_nodes.append(t_j)
+
+            incoming_edges_start_node = list(graph.me_map_graph.in_edges(t_i))
+            print(f'incoming_edges of t_i {incoming_edges_start_node}')
+            while len(list(incoming_edges_start_node)) > 0:
+                t_h = incoming_edges_start_node.pop()[0]
+                l = min_edge(label, graph.edges[(t_h, t_i)].edge_type)
+
+                if (t_h, t_j) not in graph.me_map_graph.edges:
+                    graph.me_map_graph.add_edge(t_h, t_j)
+                    graph.edges[t_h, t_j] = ed(from_node=t_h, to_node=t_j, edge_type=l)
+                    graph.edges[t_h, t_j].all_types.append(label)
+                    print('edge', str((t_h, t_j)), 'added')
+                else:
+                    graph.edges[t_h, t_j].all_types.append(l)
+
+                graph.edges[t_h, t_j].updateLabel()
+
     for node in list(graph.me_map_graph.nodes):
         if graph.nodes[node].node_label_type == 'R':
             graph.me_map_graph.remove_node(node)
