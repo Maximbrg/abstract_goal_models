@@ -38,9 +38,14 @@ def abstractGMAlgorithm(path=None, mandatory=None, default=False):
     :return:
     """
     me_map_graph = me_map(path, mandatory=mandatory)
+    root_id = [node for node in me_map_graph.me_map_graph.nodes if me_map_graph.me_map_graph.in_degree(node) == 0]
+    if len(root_id) == 0:
+        root_id = -1
+    else:
+        root_id = root_id[0]
     induced_subModel(me_map_graph)
     task_graph = tasks_map(me_map_graph)
-    root_id = [node for node in task_graph.me_map_graph.nodes if task_graph.me_map_graph.in_degree(node) == 0][0]
+
 
     propMandAlgorithm(graph=task_graph, start_node=task_graph.nodes[root_id])
 
