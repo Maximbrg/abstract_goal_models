@@ -15,13 +15,17 @@ from parser.quality_graph import quality_map
 import netgraph
 
 
-def extend_graph(target_graph=None, edges=None):
+def extend_graph(target_graph=None, edges=None, nodes=None):
     """
 
+    :param nodes:
     :param target_graph:
     :param edges:
     :return:
     """
+    for node in nodes:
+        if target_graph.nodes[node].node_type == 'Task':
+            target_graph.me_map_graph.add_node(node)
     for edge in edges:
         if target_graph.edges[(edge[0], edge[1])].edge_type == 'ConsistsOf' or \
                 target_graph.edges[(edge[0], edge[1])].edge_type == 'AchievedBy' or \
@@ -69,7 +73,7 @@ def abstractGMAlgorithm(path=None, mandatory=None, default=False):
         quality_graph.nodes[key].is_visited = False
 
     abstractContLinksAlgorithm(graph=quality_graph, default=default)
-    extend_graph(target_graph=quality_graph, edges=task_graph.me_map_graph.edges)
+    extend_graph(target_graph=quality_graph, edges=task_graph.me_map_graph.edges, nodes=task_graph.me_map_graph.nodes)
 
     return quality_graph
 
@@ -80,8 +84,8 @@ def run():
     parser.add_argument("--map", type=str
                         ,
                         default='C:\\Users\\max_b\\PycharmProjects\\abstract_goal_models\\me-maps\\input'
-                                '\\1_example.json', help="The path to the me-map for abstraction")
-    parser.add_argument("--mandatory", type=list, default=['t', 'q1', 'q2', 'q8', 't6', 't7', 't8', 't11'],
+                                '\\BP.json', help="The path to the me-map for abstraction")
+    parser.add_argument("--mandatory", type=list, default=['Specify BP'], #['t', 'q1', 'q2', 'q8', 't6', 't7', 't8', 't11']
                         help="The nodes that we want to keep")
     parser.add_argument("--default", type=bool, default=True)
     args = parser.parse_args()
