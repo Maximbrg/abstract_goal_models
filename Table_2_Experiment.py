@@ -81,7 +81,7 @@ for node in nodes_labels:
     node_info["fill"] = "#ffffff"
     node_info["stroke"] = "#000000"
     node_info["strokeWidth"] = 1
-    node_info["key"] = i
+    node_info["key"] = node
     temp[node] = i
     i -= 1
     node_info["refs"] = []
@@ -94,7 +94,10 @@ for edge in edge_labels:
     edge_type = edge_labels[edge]
     if edge_type == 'ConsistsOf' or edge_type == 'AchievedBy' or edge_type == 'Association':
         edge_info["category"] = edge_type
-        edge_info['text'] = edge_type
+        if edge_type == 'ConsistsOf':
+            edge_info['text'] = "consists of"
+        if edge_type == 'AchievedBy':
+            edge_info['text'] = "achieved by"
     else:
         edge_info["category"] = 'Contribution'
         edge_info['text'] = edge_type
