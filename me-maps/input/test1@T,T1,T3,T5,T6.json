@@ -1,0 +1,19 @@
+{ "class": "go.GraphLinksModel",
+  "modelData": {"position":"-891.4266393609144 -1687.2900196829062"},
+  "nodeDataArray": [ 
+{"category":"Task", "text":"T", "fill":"#ffffff", "stroke":"#000000", "strokeWidth":1, "key":-1, "loc":"-296.82489704313775 -1635.3425912528246", "refs":[], "ctxs":[], "comment":"627e7a73d7b4482c144ab963", "size":"43 30"},
+{"category":"Task", "text":"T2", "fill":"#ffffff", "stroke":"#000000", "strokeWidth":1, "key":-17, "loc":"-395.324255035768 -1475.9539007757007", "refs":[], "ctxs":[], "comment":null},
+{"category":"Task", "text":"T3", "fill":"rgb(255, 255, 255)", "stroke":"#000000", "strokeWidth":1, "key":-19, "loc":"-525.9192357484217 -1378.274582787954", "refs":[], "ctxs":[], "comment":"61e693afd7b44825acfb3938", "size":"55.68183898925781 36"},
+{"category":"Task", "text":"T4", "fill":"#ffffff", "stroke":"#000000", "strokeWidth":1, "key":-20, "loc":"-334.5631978217264 -1386.3283114861986", "refs":[], "ctxs":[], "comment":null},
+{"category":"Task", "text":"T6", "fill":"rgb(255, 255, 255)", "stroke":"#000000", "strokeWidth":1, "key":-21, "loc":"-229.7046316094494 -1268.0273731346754", "refs":[], "ctxs":[], "comment":"61e7ba8ad7b4482404aa0322"},
+{"category":"Task", "text":"T5", "fill":"rgb(255, 255, 255)", "stroke":"#000000", "strokeWidth":1, "key":-22, "loc":"-427.48691258807264 -1277.443490998771", "refs":[], "ctxs":[], "comment":"61e7ba8fd7b4482404aa0323"},
+{"category":"Task", "text":"T1", "fill":"#ffffff", "stroke":"#000000", "strokeWidth":1, "description":"Add a Description", "key":-7, "loc":"-240.5156249999999 -1544.9999999999993", "refs":[], "ctxs":[], "comment":null}
+ ],
+  "linkDataArray": [ 
+{"category":"AchievedBy", "text":"achieved by", "routing":{"yb":"Normal", "oE":1}, "points":[-411.60224728430296,-1463.7786764878294,-501.8536535837031,-1396.2745827879548], "from":-17, "to":-19, "refs":[], "ctxs":[], "comment":null},
+{"category":"AchievedBy", "text":"achieved by", "routing":{"yb":"Normal", "oE":1}, "points":[-384.66862027706503,-1460.2363081548508,-345.2188325804293,-1402.0459041070483], "from":-17, "to":-20, "refs":[], "ctxs":[], "comment":null},
+{"category":"AchievedBy", "text":"achieved by", "routing":{"yb":"Normal", "oE":1}, "points":[-320.63157352950253,-1370.610718865349,-243.63625590167354,-1283.7449657555264], "from":-20, "to":-21, "refs":[], "ctxs":[], "comment":null},
+{"category":"AchievedBy", "text":"achieved by", "routing":{"yb":"Normal", "oE":1}, "points":[-347.9767947489684,-1370.610718865349,-414.07331566083036,-1293.1610836196214], "from":-20, "to":-22, "refs":[], "ctxs":[], "comment":null},
+{"category":"ConsistsOf", "text":"consists of", "routing":{"class":"go.EnumValue", "classType":"Link", "name":"Normal"}, "description":"Add a Description", "points":[-287.47560709103385,-1620.3425912528246,-250.3121803840915,-1560.7175926208492], "from":-1, "to":-7, "refs":[], "ctxs":[], "comment":null},
+{"category":"ConsistsOf", "text":"consists of", "routing":{"class":"go.EnumValue", "classType":"Link", "name":"Normal"}, "description":"Add a Description", "points":[-256.79361724853516,-1537.7398629669087,-379.04626278723265,-1483.214037808791], "from":-7, "to":-17, "refs":[], "ctxs":[], "comment":null}
+ ]}

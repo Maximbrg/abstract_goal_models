@@ -13,8 +13,11 @@ from parser.task_graph import tasks_map
 from parser.quality_graph import quality_map
 
 import netgraph
-
-
+import numpy as np
+np.float = float
+np.int = int   #module 'numpy' has no attribute 'int'
+np.object = object    #module 'numpy' has no attribute 'object'
+np.bool = bool    #module 'numpy' has no attribute 'bool'
 def extend_graph(target_graph=None, edges=None, nodes=None):
     """
 
@@ -53,11 +56,7 @@ def abstractGMAlgorithm(path=None, mandatory=None, default=False):
         if flag:
             root_id = node
             break
-    # root_id = [node for node in me_map_graph.me_map_graph.nodes if me_map_graph.me_map_graph.in_degree(node) == 0] # ROOT
-    # if len(root_id) == 0:
-    #     root_id = -1
-    # else:
-    #     root_id = root_id[0]
+
     induced_subModel(me_map_graph)
     task_graph = tasks_map(me_map_graph)
 
@@ -95,8 +94,8 @@ def run():
     parser.add_argument("--map", type=str
                         ,
                         default='C:\\Users\\max_b\\PycharmProjects\\abstract_goal_models\\me-maps\\input'
-                                '\\BP.json', help="The path to the me-map for abstraction")
-    parser.add_argument("--mandatory", type=list, default=['Specify BP'], #['t', 'q1', 'q2', 'q8', 't6', 't7', 't8', 't11']
+                                '\\2_example.json', help="The path to the me-map for abstraction")
+    parser.add_argument("--mandatory", type=list, default=['t6','q1'], #['t', 'q1', 'q2', 'q8', 't6', 't7', 't8', 't11']
                         help="The nodes that we want to keep")
     parser.add_argument("--default", type=bool, default=True)
     args = parser.parse_args()
