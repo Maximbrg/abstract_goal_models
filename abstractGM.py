@@ -93,9 +93,8 @@ def run():
 
     parser.add_argument("--map", type=str
                         ,
-                        default='C:\\Users\\max_b\\PycharmProjects\\abstract_goal_models\\me-maps\\input'
-                                '\\2_example.json', help="The path to the me-map for abstraction")
-    parser.add_argument("--mandatory", type=list, default=['t6','q1'], #['t', 'q1', 'q2', 'q8', 't6', 't7', 't8', 't11']
+                        default='C:\\Users\\max_b\\PycharmProjects\\abstract_goal_models\\me-maps\\version_17.6\\t2_1.json', help="The path to the me-map for abstraction")
+    parser.add_argument("--mandatory", type=list, default=['t1', 'q5'], #['t', 'q1', 'q2', 'q8', 't6', 't7', 't8', 't11'] ['Choose Course', 'Course 1', 'Course 2', 'Overall Quality']
                         help="The nodes that we want to keep")
     parser.add_argument("--default", type=bool, default=True)
     args = parser.parse_args()
@@ -116,7 +115,7 @@ def run():
                                   node_labels=nodes_labels,
                                   edge_labels=edge_labels,
                                   node_label_bbox=dict(fc="lightgreen", ec="black", boxstyle="square", lw=3),
-                                  node_size=4,
+                                  node_size=10,
                                   )
 
     plt.axis('off')

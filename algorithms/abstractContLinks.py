@@ -53,12 +53,16 @@ def add_task_edges(quality_graph=None, task_graph=None):
 def topological_sort_util(graph, v, visited, stack):
     # Mark the current node as visited.
     visited[v] = True
-
+    # for edge in graph.edges:
+    #     if edge[0] == v:
+    #         i = edge[1]
     # Recur for all the vertices adjacent to this vertex
-    for i in list(graph.me_map_graph.adj[v].keys()):
-        if not visited[i]:
-            topological_sort_util(graph, i, visited, stack)
-
+    try:
+        for i in list(graph.me_map_graph.adj[v].keys()):
+                if not visited[i]:
+                    topological_sort_util(graph, i, visited, stack)
+    except:
+        print()
     # Push current vertex to stack which stores the result
     stack.append(v)
 
@@ -120,10 +124,18 @@ def collect_reachable_edges(graph, start_vertex):
 
     def dfs(vertex):
         visited.add(vertex)
-        for neighbor in list(graph.me_map_graph.adj[vertex].keys()):
-            reachable_edges.append((vertex, neighbor))
-            if neighbor not in visited:
-                dfs(neighbor)
+        # for edge_1 in graph.edges:
+        #     if edge_1[0] == vertex:
+        #         neighbor = edge_1[1]
+        try:
+            for neighbor in list(graph.me_map_graph.adj[vertex].keys()):
+                    # print(neighbor)
+                    reachable_edges.append((vertex, neighbor))
+                    if neighbor not in visited:
+                        dfs(neighbor)
+        except:
+            print()
+
 
     dfs(start_vertex)
     output = []
@@ -136,32 +148,40 @@ def collect_reachable_edges(graph, start_vertex):
 # Function to perform topological sort on a subgraph
 def topological_sort_edges(graph, edges):
     # Create an in-degree dictionary for the edges
-    in_degree = defaultdict(int)
-    adj_list = defaultdict(list)
+    # in_degree = defaultdict(int)
+    # adj_list = defaultdict(list)
+    #
+    # for u, v in edges:
+    #     adj_list[u].append(v)
+    #     in_degree[v] += 1
+    #
+    # # Queue for nodes with no incoming edges
+    # queue = deque([u for u in graph.nodes if in_degree[u] == 0])
+    # topo_sort = []
+    #
+    # while queue:
+    #     u = queue.popleft()
+    #     for v in adj_list[u]:
+    #         in_degree[v] -= 1
+    #         if in_degree[v] == 0:
+    #             queue.append(v)
+    #     topo_sort.append(u)
 
-    for u, v in edges:
-        adj_list[u].append(v)
-        in_degree[v] += 1
-
-    # Queue for nodes with no incoming edges
-    queue = deque([u for u in graph.nodes if in_degree[u] == 0])
-    topo_sort = []
-
-    while queue:
-        u = queue.popleft()
-        for v in adj_list[u]:
-            in_degree[v] -= 1
-            if in_degree[v] == 0:
-                queue.append(v)
-        topo_sort.append(u)
-
-    # Collect the sorted edges
+    vertices = topological_sort(graph)
     sorted_edges = []
-    for u in topo_sort:
-        for v in adj_list[u]:
-            sorted_edges.append((u, v))
+    for vertex in vertices:
+        for edge in edges:
+            if edge[1] == vertex:
+                sorted_edges.append(edge)
 
     return sorted_edges
+    # # Collect the sorted edges
+    #
+    # for u in topo_sort:
+    #     for v in adj_list[u]:
+    #         sorted_edges.append((u, v))
+    #
+    # return sorted_edges
 
 
 def abstractContLinksAlgorithm(graph=None, default=True):
@@ -196,6 +216,7 @@ def abstractContLinksAlgorithm(graph=None, default=True):
             graph.me_map_graph.add_edge(edge[0], edge[1])
             graph.edges[edge[0], edge[1]] = ed(from_node=edge[0], to_node=edge[1],
                                                edge_type=Eseed[(edge[0], edge[1])].edge_type)
+            graph.edges[edge[0], edge[1]].is_visited = True
             removeRedNodes(v_i, graph)
 
 
@@ -285,8 +306,9 @@ def removeRedNodes(vi, G):
     for edge in to_remove:
         try:
             G.me_map_graph.remove_node(int(edge[1]))
-        except:
-            continue
+        except Exception as e:
+            # Print the exception
+            print(f"An error occurred: {e}")
 
 
 def updateLabel(all_types):

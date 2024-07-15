@@ -1,0 +1,20 @@
+{"class": "go.GraphLinksModel", "nodeDataArray":
+[{"category": "Task", "text": "t1", "fill": "#ffffff", "stroke": "#000000", "strokeWidth": 1, "key": -1, "refs": [], "ctsx": [], "comment": null},
+ {"category": "Quality", "text": "q2", "fill": "#ffffff", "stroke": "#000000", "strokeWidth": 1, "key": -2, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Quality", "text": "q3", "fill": "#ffffff", "stroke": "#000000", "strokeWidth": 1, "key": -3, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Quality", "text": "q4", "fill": "#ffffff", "stroke": "#000000", "strokeWidth": 1, "key": -4, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Quality", "text": "t", "fill": "#ffffff", "stroke": "#000000", "strokeWidth": 1, "key": -6, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Quality", "text": "q5", "fill": "#ffffff", "stroke": "#000000", "strokeWidth": 1, "key": -5, "refs": [], "ctsx": [], "comment": "null"}
+],
+"linkDataArray": [
+ {"category": "Contribution", "text": "+", "routing": {"yb": "Normal", "oE": 1}, "from": -1, "to": -3, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Contribution", "text": "+", "routing": {"yb": "Normal", "oE": 1}, "from": -1, "to": -2, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Contribution", "text": "-", "routing": {"yb": "Normal", "oE": 1}, "from": -1, "to": -4, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Contribution", "text": "+", "routing": {"yb": "Normal", "oE": 1}, "from": -1, "to": -5, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Contribution", "text": "-", "routing": {"yb": "Normal", "oE": 1}, "from": -2, "to": -3, "refs": [], "ctsx": [], "comment": "null"},
+ {"category": "Contribution", "text": "--", "routing": {"yb": "Normal", "oE": 1}, "from": -2, "to": -4, "refs": [], "ctsx": [], "comment": "null"},
+  {"category": "Contribution", "text": "+", "routing": {"yb": "Normal", "oE": 1}, "from": -3, "to": -5, "refs": [], "ctsx": [], "comment": "null"},
+   {"category":"AchievedBy", "text":"achieved by", "routing":{"yb":"Normal", "oE":1}, "from":-6, "to":-1, "refs":[], "ctxs":[], "comment":"null"},
+ {"category":"Association", "text":"", "routing":{"yb":"Normal", "oE":1}, "from":-6, "to":-5, "refs":[], "ctxs":[], "comment":"null"},
+ {"category": "Contribution", "text": "--", "routing": {"yb": "Normal", "oE": 1}, "from": -4, "to": -5, "refs": [], "ctsx": [], "comment": "null"}
+]}
