@@ -386,18 +386,28 @@ def deep_union(Sr_new, Sr_pc, dSr):
             Sr_cr.append(sc)
 
     Sr_pc = list(set(Sr_pc) - set(Sr_cr))
-
+    print(list(set(Sr_pc) | set(Sr_new)))
+    list_1 = list(set(Sr_pc) | set(Sr_new) | (set(Sr_nr) & set(Sr_cr)))
+    set_1 = set(list(set(Sr_pc) | set(Sr_new) | (set(Sr_nr) & set(Sr_cr))))
     return list(set(Sr_pc) | set(Sr_new) | (set(Sr_nr) & set(Sr_cr)))
 
 def deep_subset(Sr_1, Sr_2, dSr):
     for alpha in Sr_1:
+        isSubset = False
         fSS_Sr1 = flattenSuperSet(alpha, dSr)
 
         for beta in Sr_2:
             fSS_Sr2 = flattenSuperSet(beta, dSr)
+            flag = True
             for item in fSS_Sr1:
                 if item not in fSS_Sr2:
-                    return False
+                    flag = False
+                    break
+            if flag == True:
+                isSubset = True
+                break
+        return isSubset
+
 
     return True
     # for key in graph.me_map_graph.nodes:
